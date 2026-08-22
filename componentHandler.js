@@ -1,5 +1,5 @@
-const embedPanelHandler = require('./embedPanelHandler');
-const pontoPanelHandler = require('./pontoPanelHandler');
+const embedPanelHandler = require('./handlers/embedPanelHandler');
+const pontoPanelHandler = require('./handlers/pontoPanelHandler');
 
 /** Decide, pelo prefixo do customId, qual sub-handler trata a interação de componente/modal. */
 async function tratarComponente(interaction) {
@@ -14,4 +14,3 @@ async function tratarComponente(interaction) {
 }
 
 module.exports = { tratarComponente };
-
