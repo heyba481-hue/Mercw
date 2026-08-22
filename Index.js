@@ -1,5 +1,5 @@
-const config = require('./src/config');
-const { criarClient } = require('./src/client');
+const config = require('./config');
+const { criarClient } = require('./client');
 
 const client = criarClient();
 
@@ -11,4 +11,3 @@ client.login(config.token).catch((err) => {
 process.on('unhandledRejection', (err) => {
   console.error('[index] Rejeição de Promise não tratada:', err);
 });
-
