@@ -7,7 +7,7 @@ const {
   ChannelSelectMenuBuilder,
   ChannelType,
 } = require('discord.js');
-const config = require('../config');
+const config = require('./config.js');
 
 /** Monta o EmbedBuilder "clássico" a partir dos dados salvos na sessão. */
 function construirEmbedClassico(sessao) {
