@@ -11,9 +11,9 @@ function listarArquivosJs(dir) {
   return resultado;
 }
 
-/** Carrega todos os comandos em src/commands/** e popula client.commands (Collection). */
+/** Carrega todos os comandos em ./commands/** e popula client.commands (Collection). */
 function carregarComandos(client) {
-  const pastaComandos = path.join(__dirname, '..', 'commands');
+  const pastaComandos = path.join(__dirname, 'commands');
   const arquivos = listarArquivosJs(pastaComandos);
 
   for (const arquivo of arquivos) {
