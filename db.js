@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
-const config = require('../config');
+const config = require('./config');
 
 const dir = path.dirname(config.databasePath);
 if (dir && dir !== '.' && !fs.existsSync(dir)) {
@@ -43,4 +43,3 @@ CREATE TABLE IF NOT EXISTS embed_templates (
 `);
 
 module.exports = db;
-
