@@ -1,5 +1,5 @@
 const { MessageFlags } = require('discord.js');
-const { tratarComponente } = require('./handlers/componentHandler');
+const { tratarComponente } = require('../componentHandler');
 
 module.exports = {
   name: 'interactionCreate',
