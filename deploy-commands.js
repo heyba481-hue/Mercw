@@ -5,7 +5,7 @@
 
 const { REST, Routes } = require('discord.js');
 const config = require('./config');
-const { listarArquivosJs } = require('./handlers/commandHandler');
+const { listarArquivosJs } = require('./commandHandler');
 const path = require('path');
 
 function coletarComandos() {
@@ -33,4 +33,3 @@ function coletarComandos() {
     process.exit(1);
   }
 })();
-
