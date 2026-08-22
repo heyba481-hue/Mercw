@@ -1,9 +1,9 @@
 const { MessageFlags } = require('discord.js');
-const embedSession = require('../utils/embedSession');
+const embedSession = require('../embedSession');
 const embedTemplates = require('../embedTemplates');
 const { construirPainel, construirEmbedClassico } = require('../embedPreview');
 const { montarPayloadV2 } = require('../componentsV2');
-const { modais, aplicarModal } = require('../modals/embedModals');
+const { modais, aplicarModal } = require('../embedModals');
 
 function sessaoDe(interaction) {
   return embedSession.obter(interaction.user.id, interaction.guildId, interaction.channelId);
