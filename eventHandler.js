@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function carregarEventos(client) {
-  const pastaEventos = path.join(__dirname, '..', 'events');
+  const pastaEventos = path.join(__dirname, 'events');
   const arquivos = fs.readdirSync(pastaEventos).filter((f) => f.endsWith('.js'));
 
   for (const arquivo of arquivos) {
@@ -15,4 +15,3 @@ function carregarEventos(client) {
 }
 
 module.exports = { carregarEventos };
-
