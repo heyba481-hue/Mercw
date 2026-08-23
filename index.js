@@ -1,6 +1,6 @@
-const config = require('./src/config');
-const { criarClient } = require('./src/client');
-const { registrarComandos } = require('./src/deploy-commands');
+const config = require('./config.js');
+const { criarClient } = require('./client.js');
+const { registrarComandos } = require('./deploy-commands.js');
 
 async function iniciar() {
   try {
