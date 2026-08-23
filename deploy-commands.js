@@ -1,11 +1,10 @@
 // Registra (ou atualiza) os slash commands no Discord.
-// Rode com: npm run deploy
-// Usa GUILD_ID (se definido) pra registrar só num servidor = instantâneo, ótimo pra testar.
-// Sem GUILD_ID, registra global = pode levar até 1h pra propagar.
+// Pode ser chamado tanto por "npm run deploy" quanto automaticamente
+// pelo próprio index.js no boot (útil quando não há acesso a shell/terminal).
 
 const { REST, Routes } = require('discord.js');
 const config = require('./config');
-const { listarArquivosJs } = require('./commandHandler');
+const { listarArquivosJs } = require('./handlers/commandHandler');
 const path = require('path');
 
 function coletarComandos() {
@@ -14,22 +13,27 @@ function coletarComandos() {
   return arquivos.map((arquivo) => require(arquivo).data.toJSON());
 }
 
-(async () => {
+async function registrarComandos() {
   const comandos = coletarComandos();
   const rest = new REST().setToken(config.token);
 
-  try {
-    console.log(`[deploy] Registrando ${comandos.length} comando(s)...`);
+  console.log(`[deploy] Registrando ${comandos.length} comando(s)...`);
 
-    const rota = config.guildId
-      ? Routes.applicationGuildCommands(config.clientId, config.guildId)
-      : Routes.applicationCommands(config.clientId);
+  const rota = config.guildId
+    ? Routes.applicationGuildCommands(config.clientId, config.guildId)
+    : Routes.applicationCommands(config.clientId);
 
-    const resultado = await rest.put(rota, { body: comandos });
+  const resultado = await rest.put(rota, { body: comandos });
+  console.log(`[deploy] ✅ ${resultado.length} comando(s) registrado(s) ${config.guildId ? `no servidor ${config.guildId}` : 'globalmente'}.`);
+  return resultado;
+}
 
-    console.log(`[deploy] ✅ ${resultado.length} comando(s) registrado(s) ${config.guildId ? `no servidor ${config.guildId}` : 'globalmente'}.`);
-  } catch (err) {
+// Se o arquivo for rodado diretamente (npm run deploy), executa e encerra.
+if (require.main === module) {
+  registrarComandos().catch((err) => {
     console.error('[deploy] ❌ Falha ao registrar comandos:', err);
     process.exit(1);
-  }
-})();
+  });
+}
+
+module.exports = { registrarComandos };
