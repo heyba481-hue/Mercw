@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js');
-const embedSession = require('../utils/embedSession');
-const { construirPainel } = require('./embedPreview.js');
+const embedSession = require('../embedSession.js');
+const { construirPainel } = require('../embedPreview.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
